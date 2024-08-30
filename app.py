@@ -13,7 +13,7 @@ def load_test_data():
 
 @st.cache_data
 def load_model():
-    return joblib.load("./models/GBT_ENC_FULLCAT.pkl")
+    return joblib.load("./models/GBT_ENC_FULLCAT_model.pkl")
 
 # Main app
 def main():
