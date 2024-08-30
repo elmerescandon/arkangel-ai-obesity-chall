@@ -48,7 +48,5 @@ def prepareData(df):
 def process_data(df, model):
     continuous_vars, categorical_vars = analyzeDataTypes(df)
     df = preprocessingWithLabelEncoder(df, categorical_vars)
-    df.drop('MTRANS', axis=1, inplace=True)
-    df.drop('SMOKE', axis=1, inplace=True)
     result = model.predict(df)
     return resultToLabel[result[0]]
