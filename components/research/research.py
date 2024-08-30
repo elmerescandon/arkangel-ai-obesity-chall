@@ -38,8 +38,22 @@ def research():
                     4) Frequency of high-caloric food consumption
                     5) Frequency of vegetables consumption"""); 
         st.write('An evaluation considering the chosen classification models was performed to determine the feature importance.')
-
-    # Model Selection
+        st.markdown("_**RANDOM Important Feature**_: Apply a random generator to divide which features are not scored according to arbitrary information.")
+        st.image("./media/random_feature_importance.png", use_column_width=True)
+        st.markdown("""
+                    According to the decision and random forest with a RANDOM generator. The important features are.
+                    1) Decision Trees: CALC, NCP, FAVC, FCVC, Age, CH20, Height, Gender, Weight.
+                    2) Random Forest: TUE, FCVC, Age, CH20, Height, Gender, Weight
+                    3) Six features stay consistent
+                    4) Transportation and Smoking does not represent importance during classification
+                                        """);
+        st.info("The final model avoids the Transportation and Smoking variables, providing an improvement in 0.2%.")
+        st.markdown("_**Permutation Important Feature**_: Validate across several folds to check feature ranking variation.");
+        st.image("./media/permutation_feature_importance.png", use_column_width=True)
+        st.markdown(" 1) The permutation feature importance show that features are not affected with several iterations. Therefore, they are consistent accross the dataset.")
+        st.write("The permutation results are inconsistent with the RANDOM method to check for important features. No important conclusion could be inferred from the applied method .")
+    
+        # Model Selection
     with st.expander("Model Selection"):
         st.write('_**Decision Tree [2]**_')
         st.write('1) Dataset contain both numerical and categorical variables.')
