@@ -8,13 +8,12 @@ def research():
 
     results = load_results("./results/results.csv")
     results_2 = load_results("./results/results_wo_data.csv")
+    results_3 = load_results("./results/results_full_categorical.csv")
+    graph = load_results("./results/class_report_full_categorical.csv")
 
     # Overview
     with st.expander("Overview"):
         st.write('This is a solution for the Arkangel AI Challenge. The goal is to predict the risk of cardiovascular disease (CVR) based on the obesity level of a patient. The dataset contains information about the obesity level of patients and their CVR risk. The dataset is divided into two files: train.csv and test.csv. The train.csv file contains the training data, while the test.csv file contains the test data. The goal is to build a machine learning model that can predict the CVR risk of patients based on their obesity level.')
-
-    # Data Exploration
-    with st.expander("Data Exploration"):
         st.write("The data included 20,758 entries with 17 features with 8 numerical and 8 categorical. The target variable is 'CVRisk'. [1]")
 
     # Data Preprocessing
@@ -75,9 +74,21 @@ def research():
 
     # Results
     with st.expander("Results"):
-        st.write('The results of the model evaluation are shown in the table below:')
+        st.write('The first results are evaluated for Decision Trees, Random Forest and Gradient Boosting Trees. All of the include a normalization step for numerical data and a label encoding for categorical data.')
+        st.write("The comparison also included two different processing methods: One-Hot Enconding and Label Encoding. Additionally, all of the models were hyperparameter tuned using GridSearchCV, excepting Gradient Boost where GridSearch did not improved the results whatsoever.")
         st.write(results)
+
+        st.write("The the second results are evaulated for a feature reduction: SMOKE and Transporation as a testing phase following the feature importance evaluation.")
         st.write(results_2)
+
+        st.write("Finally the third results are evaluated for a full categorical encoding, including both Encoding for all of the categorical variables. It's know that the questionary include all of the variables as categorical, but data generation extrapolate to numerical values.")
+        st.write(results_3)
+
+
+        st.write("A 0.2% improvement was made using feature evaluation for the full categorical evaluation. It's proven that Gradient Boosting Trees is the best model for the dataset due to its robustness and performance while still using a tree structure. The tree structure is optimal for this model due to its categorical, non-linear and low-correlation features.")
+
+        st.write(graph)
+        st.write("From the classification accuracy by class only for the best model (Gradient Boosting - Label Encoding -  Full Categorical), it can be seen that the model performs well for all classes. However, the model struggles to identify correctly the Overweight Level I class.")
 
     # References
     with st.expander("References"):
